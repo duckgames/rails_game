@@ -25,8 +25,8 @@ task :setup do
     command %[touch "#{fetch(:shared_path)}/config/database.yml"]
     command %[touch "#{fetch(:shared_path)}/config/puma.rb"]
     command %[chmod -R o-rwx config]
-  #  command %{rvm install ruby-2.6.3}
-  #  command %{gem install bundler}
+    command %{rvm install ruby-2.6.3}
+    command %{gem install bundler}
   end
 
 end
