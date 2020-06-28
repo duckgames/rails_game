@@ -20,7 +20,16 @@ set :database_host, 'localhost'
 set :database_name, fetch(:application_name)
 set :database_username, fetch(:user)
 
-set :database_yml_string, %[production:\n adapter: #{fetch(:database_adapter)}\n encoding: #{fetch(:database_encoding)}\n pool: #{fetch(:database_pool)}\n host: #{fetch(:database_host)}\n database: #{fetch(:database_name)}\n password: \n username: #{fetch(:database_username)}]
+set :database_yml_string, [
+"production:",
+" adapter: #{fetch(:database_adapter)}",
+" encoding: #{fetch(:database_encoding)}",
+" pool: #{fetch(:database_pool)}",
+" host: #{fetch(:database_host)}",
+" database: #{fetch(:database_name)}",
+" password: ",
+" username: #{fetch(:database_username)}",
+].join("\n")
 
 set :puma_environment, 'production'
 set :puma_bind, %[unix:#{fetch(:shared_path)}/tmp/sockets/puma.sock]
@@ -34,7 +43,19 @@ set :puma_stdout, %[#{fetch(:shared_path)}/log/puma.stdout.log]
 set :puma_stderr, %[#{fetch(:shared_path)}/log/puma.stderr.log]
 set :puma_activate_control_app, %[unix:#{fetch(:shared_path)}/tmp/sockets/pumactl.sock]
 
-set :puma_rb_string, %[environment "#{fetch(:puma_environment)}"\n\nbind "#{fetch(:puma_bind)}"\npidfile "#{fetch(:puma_pidfile)}"\nstate_path "#{fetch(:puma_state_path)}"\ndirectory "#{fetch(:puma_directory)}"\n\nworkers #{fetch(:puma_workers)}\nthreads #{fetch(:puma_threads)}\ndaemonize #{fetch(:puma_daemonize)}\n\nstdout_redirect "#{fetch(:puma_stdout)}", "#{fetch(:puma_stderr)}"\n\nactivate_control_app "#{fetch(:puma_activate_control_app)}"\n\nprune_bundler]
+set :puma_rb_string, [
+  "environment \"#{fetch(:puma_environment)}\"",
+  "\nbind \"#{fetch(:puma_bind)}\"",
+  "pidfile \"#{fetch(:puma_pidfile)}\"",
+  "state_path \"#{fetch(:puma_state_path)}\"",
+  "directory \"#{fetch(:puma_directory)}\"",
+  "\nworkers #{fetch(:puma_workers)}",
+  "threads #{fetch(:puma_threads)}",
+  "daemonize #{fetch(:puma_daemonize)}",
+  "\nstdout_redirect \"#{fetch(:puma_stdout)}\", \"#{fetch(:puma_stderr)}\"",
+  "\nactivate_control_app \"#{fetch(:puma_activate_control_app)}\"",
+  "\nprune_bundler"
+].join("\n")
 
 task :remote_environment do
   invoke :'rvm:use', 'ruby-2.6.3@default'
