@@ -22,6 +22,7 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'mina', require: false
 gem 'mina-puma', require: false
+gem 'devise'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
