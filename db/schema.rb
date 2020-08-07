@@ -10,7 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_07_151619) do
+ActiveRecord::Schema.define(version: 2020_07_08_190321) do
+
+  create_table "empires", force: :cascade do |t|
+    t.string "name"
+    t.integer "cash"
+    t.integer "metals"
+    t.integer "energy"
+    t.integer "air_units"
+    t.integer "ground_units"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_empires_on_user_id"
+  end
+
+  create_table "planets", force: :cascade do |t|
+    t.integer "x"
+    t.integer "y"
+    t.integer "size"
+    t.integer "population"
+    t.integer "living_quarters"
+    t.integer "mines"
+    t.integer "power_plants"
+    t.integer "empire_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["empire_id"], name: "index_planets_on_empire_id"
+    t.index ["x", "y"], name: "index_planets_on_x_and_y", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,4 +52,6 @@ ActiveRecord::Schema.define(version: 2020_07_07_151619) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "empires", "users"
+  add_foreign_key "planets", "empires"
 end

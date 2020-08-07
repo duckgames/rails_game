@@ -1,0 +1,13 @@
+map_width: 50
+map_height: 50
+num_planets: 100
+min_planet_size: 100
+max_planet_size: 200
+population_per_planet_size: 10
+
+starting_planet_size: 150
+starting_cash: 1000
+starting_energy: 100
+starting_metal: 100
+starting_ground_units: 10
+starting_air_units: 10

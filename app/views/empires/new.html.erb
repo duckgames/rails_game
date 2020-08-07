@@ -1,0 +1,10 @@
+<%= form_with(model: @empire, local: true) do |f| %>
+    <div class="form-group row">
+        <%= f.label "Empire Name", class: "col-sm-4 col-form-label" %>
+        <div class="col-sm-4">
+            <%= f.text_field :name, required: true, class: "form-control" %>
+        </div>
+    </div>
+
+    <%= f.submit "Create Empire" %>
+<% end %>

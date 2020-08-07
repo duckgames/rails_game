@@ -1,0 +1,2 @@
+module EmpiresHelper
+end

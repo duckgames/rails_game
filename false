@@ -1,0 +1,6 @@
+      invoke  active_record
+      create    db/migrate/20200708190122_create_empires.rb
+      create    app/models/empire.rb
+      invoke    test_unit
+      create      test/models/empire_test.rb
+      create      test/fixtures/empires.yml
